@@ -7,10 +7,10 @@ Does going to university in a different country affect your mental health? A Jap
 ![mentalhealth](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/dfc8ea52-e7f1-4024-849e-21ce7cc768e8)
 
 The study found that **international students have a higher risk of mental health difficulties than the general population**. 
-
 This project explores the `students` data using PostgreSQL to find out if this is true and see if the length of stay is a contributing factor.
 
 ### Description: 
+
 The data description of the fields that might be helpful is given below. The full dataset is in one table with 50 fields and, according to the survey, 268 records. Each row is a student.
 
 | Field Name    | Description                                      | 
@@ -27,8 +27,8 @@ The data description of the fields that might be helpful is given below. The ful
 
 ### Dependencies:
 
-Python libraries: sqlalchemy
-SQL - PostgreSQL
+- Python libraries: sqlalchemy
+- SQL - PostgreSQL
 
 ### Questions to be answered:
 
