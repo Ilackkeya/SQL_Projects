@@ -1,6 +1,25 @@
-# DataCamp-SQL-Projects
+# Mental Health Analysis
+Does going to university in a different country affect your mental health? A Japanese international university surveyed its students in 2018 and published a study the following year that was approved by several ethical and regulatory boards.
 
-GUIDED PROJECTS:
+![mentalhealth](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/dfc8ea52-e7f1-4024-849e-21ce7cc768e8)
 
-Analyzing Students' Mental Health in SQL: View my project [here!](https://github.com/vanika-hans/DataCamp-SQL-Projects/blob/main/Analyzing%20Students'%20Mental%20Health%20in%20SQL/notebook.ipynb)
+The study found that **international students have a higher risk of mental health difficulties than the general population**. Explore the `students` data using PostgreSQL to find out if this is true and see if the length of stay is a contributing factor.
+
+Here is a data description of the fields you may find helpful. The full dataset is in one table with 50 fields and, according to the survey, 268 records. Each row is a student.
+
+| Field Name    | Description                                      | 
+| ------------- | ------------------------------------------------ |
+| inter_dom     | Types of students                                |
+| japanese_cate | Japanese language proficiency                    | 
+| english_cate  | English language proficiency                     |
+| academic      | Current academic level                           | 
+| age           | Current age of student                           |
+| stay          | Current length of stay in years                  |
+| todep         | Total score of depression (PHQ-9 test)           |
+| tosc          | Total score of social connectedness (SCS test)   |
+| toas          | Total score of Acculturative Stress (ASISS test) |
+
+
+
+
 
