@@ -13,7 +13,7 @@ Welcome to my SQL Projects repo! This repository features a collection of SQL da
 
 ### Repository Structure
 
-Each project repository is organized as follows:
+Each project folder is organized as follows:
 
   - Data: Sample datasets (when available) used in the analysis.
   - Notebooks: Jupyter notebooks (with SQL integration from python library) showcasing the data extraction and analysis.
