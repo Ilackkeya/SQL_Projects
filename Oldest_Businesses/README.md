@@ -1,11 +1,11 @@
 # What and Where are the World's Oldest Businesses?
 
 ### Problem Statement:
-The image below is an entrance to St. Peter Stiftskeller, a restaurant in Saltzburg, Austria. The sign over the entrance shows '803' - the year the business opened.
+The image below is an entrance to St. Peter Stiftskeller, a restaurant in Saltzburg, Austria. The sign over the entrance shows '803' - the year the business opened
 
-										![image](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/4076a474-35a9-4347-8124-963cb8c67d7b)
+![image](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/4076a474-35a9-4347-8124-963cb8c67d7b)
 
-																		Image: St. Peter Stiftskeller, founded 803. Credit: Pakeha.
+Image: St. Peter Stiftskeller, founded 803. Credit: Pakeha.
 
 An important part of business is planning for the future and ensuring that the company survives changing market conditions. Some businesses do this really well and last for hundreds of years.
 
