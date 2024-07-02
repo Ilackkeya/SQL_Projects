@@ -7,9 +7,7 @@ The image below is an entrance to St. Peter Stiftskeller, a restaurant in Saltzb
 
 Image: St. Peter Stiftskeller, founded 803. Credit: Pakeha.
 
-An important part of business is planning for the future and ensuring that the company survives changing market conditions. Some businesses do this really well and last for hundreds of years.
-
-BusinessFinancing.co.uk researched the oldest company that is still in business in (almost) every country and compiled the results into a dataset. In this project, you'll explore that dataset to see what they found.
+An important part of business is planning for the future and ensuring that the company survives changing market conditions. Some businesses do this really well and last for hundreds of years. BusinessFinancing.co.uk researched the oldest company that is still in business in (almost) every country and compiled the results into a dataset. In this project, let's explore that dataset to see what they found.
 
 ### Description: 
 The database contains three tables.
