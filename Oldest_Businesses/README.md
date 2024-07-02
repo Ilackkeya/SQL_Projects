@@ -30,4 +30,4 @@ The database contains three tables.
 - Filtering counts by continent and category
   
 ### For More Information
-Contact Ilackkeya Bhavananthi bsilackkeya21@gmail.com or LinkedIn
+Contact Ilackkeya Bhavananthi bsilackkeya21@gmail.com or [LinkedIn](https://www.linkedin.com/in/ilackkeya/)
