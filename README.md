@@ -10,6 +10,10 @@ Welcome to my SQL Projects repo! This repository features a collection of SQL da
   - Techniques Used: aggregate functions
   - Tools: SQL (PostgreSQL)
 
+2. What and Where are the World's Oldest Businesses?
+  - Description: Exploring the World's Oldest Businesses
+  - Techniques Used: JOINS, Aggregate functions
+  - Tools: SQL (PostgreSQL)
 
 ### Repository Structure
 
