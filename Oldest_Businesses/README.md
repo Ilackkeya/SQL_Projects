@@ -3,7 +3,7 @@
 ### Problem Statement:
 The entrance to St.Peter Stiftskeller, a reataurant in Saltzburg, Austria, The sign over the entrance shows '803' - the year the business opened.
 
-![400px-Eingang_zum_St _Peter_Stiftskeller](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/cf21fea4-3d04-41db-b6bc-c2e178ec6f17)
+![image](https://github.com/Ilackkeya/SQL_Projects/assets/66105814/4076a474-35a9-4347-8124-963cb8c67d7b)
 
 Image: St. Peter Stiftskeller, founded 803. Credit: Pakeha.
 
