@@ -1,0 +1,124 @@
+Challenge 1:
+
+Airbnb Apartment Count
+
+Write a query to find the number of apartments per nationality that are owned by people under 30 years old. Output the nationality along with the number of apartments.
+
+airbnb_hosts table:
+
+Column Name	Description
+host_id	Identifier for each host
+age	Age of the host
+gender	Gender of the host
+nationality	Nationality of the host
+airbnb_units table:
+
+Column Name	Description
+host_id	Identifier for the host
+unit_id	Identifier for each unit
+
+Solution:
+
+SELECT ah.nationality, COUNT(au.unit_id) as Apartment_count
+FROM airbnb_hosts as ah
+JOIN airbnb_units as au
+ON ah.host_id = au.host_id
+WHERE ah.age < 30
+GROUP BY ah.nationality
+
+Challenge 2:
+
+Speech Recognition
+
+You have recently joined Apple's speech recognition team and have been assigned a task to evaluate the consistency across different voice-enabled device types in rendering text responses. There are five distinct tables named table1, table2, table3, table4, and table5.
+
+Each of these tables contains the following columns:
+
+Column Name	Description
+device_type	Type of the device (Siri, Alexa, etc.)
+device_id	Unique identifier of the specific device
+feature	Main feature of the device being used
+text	Text processed by the device
+Your objective is to write a SQL query that identifies texts that are rendered by at least three different device types.
+
+For instance, if Siri, Alexa, and Google Assistant all render the text "Hi, how is your day?" in response to a particular speech input, that text should be included in your result.
+
+Solution:
+
+SELECT text
+FROM (
+    SELECT text, device_type FROM table1
+    UNION ALL
+    SELECT text, device_type FROM table2
+    UNION ALL
+    SELECT text, device_type FROM table3
+    UNION ALL
+    SELECT text, device_type FROM table4
+    UNION ALL
+    SELECT text, device_type FROM table5
+) combined_results
+GROUP BY text
+HAVING COUNT(DISTINCT (device_type))>=3
+
+Challenge 3:
+
+Card Launch Success
+
+Your team at JPMorgan Chase is preparing to launch a new credit card and needs to estimate how many cards will be issued in its first month.
+
+Your task is to write a SQL query to find out how many cards were issued in the first month of previous card launches. The query should display each credit card's name alongside the quantity issued in its launch month.
+
+Hint: To identify the launch month, refer to the earliest record for each card
+
+monthly_cards_issued table:
+
+Column Name	Description
+issue_month	The month the redit card was issued
+issue_year	The year the credit card was issued
+card_name	The name of the credit card
+issued_amount	The number of credit cards issued
+
+SOLUTION:
+
+WITH card_launch AS (
+    SELECT
+        card_name,
+        issued_amount,
+        ROW_NUMBER() OVER(PARTITION BY card_name ORDER BY issue_year) AS rnk_year,
+        ROW_NUMBER() OVER(PARTITION BY card_name, issue_year ORDER BY issue_month) AS rnk_month
+    FROM
+        monthly_cards_issued
+        )
+
+SELECT card_name, issued_amount
+FROM card_launch
+WHERE rnk_year = 1 AND rnk_month = 1
+
+CHALLENGE 4:
+
+Given a table of tweets with their respective hashtags, write a SQL query to find the top K (K=2) most frequently mentioned hashtags in the table.
+
+tweets table:
+
+Column Name	Description
+id	Unique identifier for each tweet
+tweet_text	Text content of the tweet
+hashtags	Hashtags associated with the tweet
+
+
+SOLUTION:
+
+WITH my_hashtags AS (
+SELECT 
+    REGEXP_SPLIT_TO_TABLE(hashtags, ', ') AS hashtag
+FROM tweets
+
+)
+
+SELECT 
+    hashtag, 
+    COUNT(*) AS count
+FROM my_hashtags
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 2

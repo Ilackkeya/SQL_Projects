@@ -15,6 +15,12 @@ Welcome to my SQL Projects repo! This repository features a collection of SQL da
   - Techniques Used: JOINS, Aggregate functions
   - Tools: SQL (PostgreSQL)
 
+3. DataFord Challenges
+  - Description: Interview questions
+  - Techniques Used: JOINS, Aggregate functions, CTEs, Subqueries
+  - Tools: SQL (PostgreSQL)
+
+
 ### Repository Structure
 
 Each project folder is organized as follows:
