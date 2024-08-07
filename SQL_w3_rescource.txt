@@ -1,0 +1,131 @@
+HR Database 
+
+Source: https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/index.php
+
+SORT FILTER: Exercises, Practice, Solution
+
+
+From the following table, write a  SQL query to find those employees whose salaries are less than 6000. Return full name (first and last name), and salary.
+
+Sample table: employees
+
+Solution:
+
+SELECT CONCAT(FIRST_NAME, " " ,LAST_NAME) as full_name, SALARY
+FROM employees
+WHERE SALARY < 6000;
+
+
+From the following table, write a  SQL query to find those employees whose salary is higher than 8000. Return first name, last name and department number and salary.
+
+Solution:
+
+SELECT FIRST_NAME, LAST_NAME, DEPARTMENT_ID, SALARY
+FROM employees
+WHERE SALARY> 8000;
+
+From the following table, write a  SQL query to find those employees whose last name is "McEwen". Return first name, last name and department ID.
+
+Solution:
+
+SELECT FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+FROM employees
+WHERE LAST_NAME = "McEwen";
+
+From the following table, write a  SQL query to identify employees who do not have a department number. Return employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary,commission_pct, manager_id and department_id.
+
+Solution:
+
+SELECT *
+FROM employees
+WHERE DEPARTMENT_ID IS NULL ;
+
+From the following table, write a SQL query to find those employees whose first name does not contain the letter ‘M’. Sort the result-set in ascending order by department ID. Return full name (first and last name together), hire_date, salary and department_id.
+
+Solution:
+
+SELECT CONCAT(FIRST_NAME, " ", "LAST_NAME) as full name, HIRE_DATE, SALARY, DEPARTMENT_ID
+FROM employees
+WHERE FIRST_NAME NOT LIKE "%M%"
+ORDER BY DEPARTMENT_ID;
+
+From the following table, write a  SQL query to find those employees who earn between 8000 and 12000 (Begin and end values are included.) and get some commission. These employees joined before ‘2003-06-05’ or were not included in the department numbers 40, 120 and 70. Return all fields.
+
+Solution:
+
+
+SELECT *
+FROM employees
+WHERE SALARY BETWEEN 8000 AND 12000
+	AND COMMISSION_PCT IS NOT NULL 
+	AND HIRE_DATE < "2003-06-05" 
+	OR DEPARTMENT_ID NOT IN (40, 120, 70);
+
+
+From the following table, write a  SQL query to find the employees who were hired before June 21st, 2002. Return all fields.
+
+Solution:
+
+SELECT *
+FROM employees
+WHERE HIRE_DATE < "2002-06-21";
+
+
+From the following table, write a  SQL query to find the employees whose managers hold the ID 120, 103, or 145. Return first name, last name, email, salary and manager ID.
+
+Solution:
+
+SELECT first_name, last_name, email, salary, manager_ID
+FROM employees
+WHERE manager_ID IN (120, 103, 45) ;
+
+From the following table, write a  SQL query to find those employees who worked more than two jobs in the past. Return employee id.
+
+Solution:
+
+Method 1:
+
+SELECT EMPLOYEE_ID
+FROM (EMPLOYEE_ID, COUNT(JOB_ID) AS JOB_COUNT FROM job_history WHERE JOB_COUNT >= 2 GROUP BY EMPLOYEE_ID);
+
+
+Method 2:
+
+SELECT EMPLOYEE_ID
+FROM job_history
+GROUP BY employee_id
+HAVING COUNT>=2;
+
+
+From the following table, write a SQL query to count the number of employees, the sum of all salary, and difference between the highest salary and lowest salaries by each job id. Return job_id, count, sum, salary_difference.
+
+Solution:
+
+SELECT JOB_ID, COUNT(*) as employee_count, SUM(SALARY) as TOTAL_SALARY, MIN(SALARY) - MAX(SALARY) as SALARY_DIFFERENCE
+FROM employees
+GROUP BY JOB_ID;
+
+
+From the following table, write a  SQL query to find each job ids where two or more employees worked for more than 300 days. Return job id
+
+Solution:
+
+SELECT job_id
+FROM job_history
+WHERE end_date - start_date > 300
+GROUP BY job_id
+HAVING COUNT(*) >= 2;
+
+
+Method 2: (from employees table, not sure if it's right)
+
+--Creating CTE's to calculate hired days by job id and employee id
+WITH hired_days AS (SELECT JOB_ID, EMPLOYEE_ID, DATE_PART('day', HIRE_DATE::date - CURRENT_DATE::date) as days_hired;
+FROM employees)
+
+--Retrieving the desired result
+SELECT JOB_ID
+FROM hired_days
+WHERE EMPLOYEE_ID >=2 AND days_hired > 300;
+
+Continue here: https://www.w3resource.com/sql-exercises/sql-subqueries-exercises.php
