@@ -129,3 +129,40 @@ FROM hired_days
 WHERE EMPLOYEE_ID >=2 AND days_hired > 300;
 
 Continue here: https://www.w3resource.com/sql-exercises/sql-subqueries-exercises.php
+
+From the following table, write a  SQL query to find those employees who receive a higher salary than the employee with ID 163. Return first name, last name.
+
+Solution:
+
+SELECT first_name, last_name
+FROM employees
+WHERE SALARY > (SELECT SALARY FROM employees WHERE employee_id = 163);
+
+From the following table, write a  SQL query to find out which employees have the same designation as the employee whose ID is 169. Return first name, last name, department ID and job ID.
+
+Solution:
+
+SELECT first_name, last_name, salary, department_id, job_id 
+FROM employees 
+WHERE job_id = (SELECT job_id  FROM employees WHERE employee_id = 169);
+
+
+From the following table, write a  SQL query to find those employees who earn more than the average salary. Return employee ID, first name, last name.
+
+Solution:
+
+SELECT employee ID, first name, last name
+FROM employees
+WHERE SALARY > (SELECT AVG(SALARY) FROM employees);
+
+From the following tables, write a  SQL query to find those employees who do not work in the departments where managers’ IDs are between 100 and 200 (Begin and end values are included.). Return all the fields of the employees.
+
+Solution:
+
+SELECT *
+FROM employees
+WHERE DEPARTMENT_ID NOT IN (SELECT d.DEPARTMENT_ID 
+FROM departments
+WHERE MANAGER_ID BETWEEN 100 AND 200);
+
+
