@@ -165,4 +165,97 @@ WHERE DEPARTMENT_ID NOT IN (SELECT d.DEPARTMENT_ID
 FROM departments
 WHERE MANAGER_ID BETWEEN 100 AND 200);
 
+From the following table, write a  SQL query to find those employees who get second-highest salary. Return all the fields of the employees.
+
+Solution:
+
+SELECT * 
+FROM employees 
+WHERE salary = (
+    SELECT DISTINCT salary
+    FROM employees
+    ORDER BY salary DESC
+    OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY
+);
+
+
+From the following table, write a  SQL query to find those employees whose salary is lower than that of employees whose job title is "MK_MAN". Exclude employees of Job title ‘MK_MAN’. Return employee ID, first name, last name, job ID.
+
+
+Solution:
+
+SELECT employee ID, first name, last name, job ID
+FROM employees
+WHERE job_id <> "MK_MAN" AND SALARY < ANY(SELECT SALARY  FROM employees FROM employees
+WHERE job_id = "MK_MAN");
+
+Write a query to display the employee id, name ( first name and last name ), SalaryDrawn, AvgCompare (salary - the average salary of all employees) and the SalaryStatus column with a title HIGH and LOW respectively for those employees whose salary is more than and less than the average salary of all employees.
+
+Solution:
+
+SELECT employee_id, first_name, last_name, SALARY AS SalaryDrawn, ROUND( (SALARY - AVG(SALARY)), 2) AS AvgCompare, CASE WHEN
+(SELECT AVG(SALARY) FROM EMPLOYEES) > SALARY THEN "LOW"
+ELSE "HIGH"
+END AS Salary Status
+FROM employees;
+
+
+From the following tables, write a  SQL query to find employees who work in departments located in the United Kingdom. Return first name.
+
+Table: employees, departments, locations, countries
+
+Solution:
+
+SELECT e.first_name
+FROM employees as e
+JOIN departments as d
+on e.department_id = d.department_id
+JOIN locations as l
+on d.location_id = l.location_id
+JOIN countries as c
+on l.country_id = c.country_id
+WHERE c.country_name = "United Kingdom";
+
+From the following tables, write a  SQL query to find those employees whose salaries exceed 50% of their department's total salary bill. Return first name, last name.
+
+Solution:
+
+SELECT e1.first_name, e1.last_name
+FROM employees e1
+WHERE salary > 0.5*(
+SELECT SUM (SALARY)
+FROM employees e2
+WHERE e1.department_id = e2.department_id
+GROUP BY department_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
