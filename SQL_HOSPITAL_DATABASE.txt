@@ -213,3 +213,160 @@ SELECT  blockfloor as "Floor",  blockcode as "Block".
 FROM room
 WHERE roomnumber = 212;
 
+Challenge 6:
+
+From the following table, write a  SQL query to count the number of available rooms. Return count as "Number of available rooms".
+
+SOLUTION:
+
+SELECT COUNT(unavailable) as  "Number of available rooms"
+FROM room
+WHERE unavailable = "False";
+
+Challenge 7:
+
+From the following table, write a  SQL query to count the number of unavailable rooms. Return count as "Number of available rooms".
+
+SOLUTION:
+
+SELECT COUNT(unavailable) as  "Number of available rooms"
+FROM room
+WHERE unavailable = "True";
+
+Challenge 8:
+
+From the following tables, write a  SQL query to identify the  physician and the department with which he or she is affiliated. Return  Physician name as "Physician", and department name as "Department".
+
+SOLUTION:
+
+SELECT p.name as "Physician", d.name as "Department"
+FROM physician as p
+JOIN affliated_with as af
+ON p.employee_id = af.physician
+JOIN department as d
+ON d.department_id = af.department;
+
+Alternate Solutions:
+
+SELECT p.name AS "Physician",
+       d.name AS "Department"
+FROM physician p,
+     department d,
+     affiliated_with a
+WHERE p.employeeid=a.physician
+  AND a.department=d.departmentid;
+
+
+SELECT p.name AS "Physician",
+       d.name AS "Department"
+FROM physician p
+INNER JOIN affiliated_with a ON p.employeeid = a.physician
+INNER JOIN department d ON a.department = d.departmentid;
+
+
+Challenge 9:
+
+From the following tables, write a  SQL query to find those  physicians who have received special training. Return  Physician name as “Physician”, treatment procedure name as "Treatment".
+
+SOLUTION:
+
+SELECT p.name as “Physician”, pr.name as "Treatment"
+FROM physician as p
+JOIN trained_in as t
+ON t.physician = p.employee_id
+JOIN procedure as pr
+ON pr.code = t.treatment;
+
+
+SELECT p.name AS "Physician",
+       c.name AS "Treatement"
+FROM physician p,
+     PROCEDURE c,
+               trained_in t
+WHERE t.physician=p.employeeid
+  AND t.treatment=c.code;
+
+
+
+Challenge 10:
+
+
+From the following tables, write a  SQL query to find those  physicians who are yet to be affiliated. Return  Physician name as "Physician", Position, and department as "Department".
+
+
+SOLUTION:
+
+SELECT p.name as "Physician", p.position as "Position", d.name as "Department"
+FROM physician as p
+JOIN affliated_with as af
+ON p.employee_id = af.physician
+JOIN department as d
+ON d.department_id = af.department
+WHERE af.primaryaffiliation = "False";
+
+Challenge 11:
+
+From the following tables, write a  SQL query to identify  physicians who are not specialists. Return  Physician name as "Physician", position as "Designation".
+
+SOLUTION:
+
+SELECT p.name as "Physician", p.position as "Designation"
+FROM physician as p
+JOIN trained_in as t
+ON t.physician = p.employee_id
+WHERE t.treatment IS NULL
+ORDER BY p.employee_id;
+
+
+Challenge 12:
+
+From the following tables, write a  SQL query to find the patients with their  physicians by whom they received preliminary treatment. Return Patient name as "Patient", address as "Address" and  Physician name as "Physician".
+
+
+SOLUTION:
+
+SELECT p.name as "Patient", p.address as "Address", ph.name as physician
+FROM physician as ph
+JOIN patient as p
+ON p.pcp = ph.employee_id;
+
+Challenge 13:
+
+From the following tables, write a  SQL query to identify the patients and the number of  physicians with whom they have scheduled appointments. Return Patient name as "Patient", number of  Physicians as "Appointment for No. of Physicians".
+
+SOLUTION:
+
+SELECT p.name as "Patient", COUNT(t.patient) as "Appointment for No. of Physicians"
+FROM appointment t
+JOIN patient p ON t.patient=p.ssn
+GROUP BY p.name
+HAVING count(t.patient)>=1;
+
+Challenge 14:
+
+From the following tables, write a  SQL query to count the number of unique patients who have been scheduled for examination room 'C'. Return unique patients as "No. of patients got appointment for room C".
+
+SOLUTION:
+
+SELECT COUNT(DISTINCT(patient)) as "No. of patients got appointment for room C"
+FROM appointment
+WHERE examinationroom = "C";
+
+Other Solution:
+
+SELECT (
+    SELECT COUNT(DISTINCT patient)
+    FROM appointment
+    WHERE examinationroom = 'C'
+) AS "No. of patients got appointment for room C";
+
+Challenge 15:
+
+From the following tables, write a  SQL query to find the names of the patients and the room number where they need to be treated. Return patient name as "Patient", examination room as "Room No.", and starting date time as Date "Date and Time of appointment".
+
+SOLUTION:
+
+SELECT p.name as "Patient", a.examinationroom as "Room No.", a.start_dt_time as "Date and Time of appointment".
+FROM appointment as a
+JOIN patient as p
+ON p.patient = a.ssn;
