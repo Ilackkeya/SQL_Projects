@@ -370,3 +370,30 @@ SELECT p.name as "Patient", a.examinationroom as "Room No.", a.start_dt_time as 
 FROM appointment as a
 JOIN patient as p
 ON p.patient = a.ssn;
+
+Challenge 16:
+
+From the following tables, write a  SQL query to identify the nurses and the room in which they will assist the  physicians. Return Nurse Name as "Name of the Nurse" and examination room as "Room No."
+
+SOLUTION:
+
+SELECT n.name as "Name of the Nurse" and a.examinationroom as "Room No."
+FROM appointment as a 
+JOIN nurse as n
+ON n.employeeid = a.prepnurse;
+
+Challenge 17:
+
+From the following tables, write a  SQL query to locate the patients who attended the appointment on the 25th of April at 10 a.m. Return Name of the patient, Name of the Nurse assisting the  physician, Physician Name as "Name of the physician", examination room as "Room No.", schedule date and approximate time to meet the physician.
+
+SOLUTION:
+
+SELECT p.name as "Patient Name", n.name as "Nurse Name", ph.name as "Physician Name", a.examinationroom as "Examination Room", a.start_dt_time as "Schedule Date and Time"
+FROM patient as p 
+JOIN nurse as n
+ON p.ssn = a.patient
+JOIN appointment as a
+ON a.prepnurse = n.employee_id
+JOIN physician as ph
+ON a.physician = ph.employee_id
+WHERE a.start_dt_time = "2008-04-25 10:00:00";
