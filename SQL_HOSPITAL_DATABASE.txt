@@ -397,3 +397,109 @@ ON a.prepnurse = n.employee_id
 JOIN physician as ph
 ON a.physician = ph.employee_id
 WHERE a.start_dt_time = "2008-04-25 10:00:00";
+
+Challenge 18:
+
+From the following tables, write a SQL query to identify those patients and their physicians who do not require any nursing assistance. Return Name of the patient as "Name of the patient", Name of the Physician as "Name of the physician" and examination room as "Room No.".
+
+
+SOLUTION:
+
+SELECT p.name as "Name of the patient", ph.name as "Name of the physician", a.examinationroom as "Room No."
+FROM patient as p
+JOIN physician as ph
+ON p.pcp = ph.employeeid
+JOIN appointment as a
+ON p.ssn = a.patient
+WHERE a.prepnurse IS NULL;
+
+Challenge 19:
+
+From the following tables, write a SQL query to locate the patients' treating physicians and medications. Return Patient name as "Patient", Physician name as "Physician", Medication name as "Medication".
+
+SOLUTION:
+
+SELECT p.name as "Patient", ph.name as "Physician", md.name as "Medication"
+FROM patient as p
+JOIN physician as ph
+ON pr.physician = ph.employeeid
+JOIN prescribes as p
+ON pr.patient = p.ssn
+JOIN medication as md
+ON md.code = pr.medication;
+
+
+Challenge 20:
+
+From the following tables, write a SQL query to identify patients who have made an advanced appointment. Return Patient name as "Patient", Physician name as "Physician" and Medication name as "Medication".
+
+
+SOLUTION:
+
+SELECT p.name AS "Patient",
+       ph.name AS "Physician",
+       md.name AS "Medication"
+FROM patient as p
+JOIN prescribes as pr 
+ON pr.patient=p.ssn
+JOIN physician as ph 
+ON pr.physician=ph.employeeid
+JOIN medication md
+ON pr.medication=md.code;
+
+
+Challenge 21:
+
+From the following tables, write a  SQL query to find those patients who did not schedule an appointment. Return Patient name as "Patient", Physician name as "Physician" and Medication name as "Medication".
+
+SOLUTION:
+SELECT p.name AS "Patient",
+       ph.name AS "Physician",
+       md.name AS "Medication"
+FROM patient as p
+JOIN prescribes as pr 
+ON pr.patient=p.ssn
+JOIN physician as ph 
+ON pr.physician=ph.employeeid
+JOIN medication md
+ON pr.medication=md.code
+WHERE pr.appointment IS NULL;
+
+
+
+
+
+
+
+
+
+
+
+Challenge 21:
+
+SOLUTION:
+Challenge 21:
+
+SOLUTION:
+Challenge 21:
+
+SOLUTION:
+Challenge 21:
+SOLUTION:
+Challenge 21:
+SOLUTION:
+Challenge 21:
+
+SOLUTION:
+Challenge 21:
+
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
+SOLUTION:
