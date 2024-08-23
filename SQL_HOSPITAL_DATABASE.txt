@@ -466,40 +466,116 @@ ON pr.medication=md.code
 WHERE pr.appointment IS NULL;
 
 
+Challenge 22:
+
+From the following table, write a SQL query to count the number of available rooms in each block. Sort the result-set on ID of the block. Return ID of the block as "Block", count number of available rooms as "Number of available rooms".
+
+SOLUTION:
+
+SELECT blockcode as "Block", COUNT(*) as "No.of available rooms"
+FROM room
+WHERE unavailable = "False"
+GROUP BY blockcode
+ORDER BY blockcode;
+
+SELECT blockcode as "Block", count(CASE WHEN unavailable = 'false' THEN 1 END) AS "Number of available rooms"
+FROM room
+WHERE unavailable = "False"
+GROUP BY blockcode
+ORDER BY blockcode;
+
+SELECT blockcode as "Block", sum(CASE WHEN unavailable = 'false' THEN 1 ELSE 0 END) AS "Number of available rooms"
+FROM room
+WHERE unavailable = "False"
+GROUP BY blockcode
+ORDER BY blockcode;
+
+Challenge 23:
+
+From the following table, write a  SQL query to count the number of available rooms in each floor. Sort the result-set on block floor. Return floor ID as "Floor" and count the number of available rooms as "Number of available rooms".
+
+SOLUTION:
+SELECT blockfloor as "Floor", COUNT(*) as "No.of available rooms"
+FROM room
+WHERE unavailable = "False"
+GROUP BY blockfloor
+ORDER BY blockfloor;
+
+Challenge 24:
+
+From the following table, write a SQL query to count the number of available rooms for each floor in each block. Sort the result-set on floor ID, ID of the block. Return the floor ID as "Floor", ID of the block as "Block", and number of available rooms as "Number of available rooms".
+
+SOLUTION:
+
+SELECT blockcode as "Block", blockfloor as "Floor", COUNT(*) as "No.of available rooms"
+FROM room
+WHERE unavailable = "False"
+GROUP BY blockcode, blockfloor
+ORDER BY blockfloor, blockcode;
+
+Challenge 25:
+
+From the following tables, write a SQL query to count the number of rooms that are unavailable in each block and on each floor. Sort the result-set on block floor, block code. Return the floor ID as "Floor", block ID as "Block", and number of unavailable as “Number of unavailable rooms".
+
+SOLUTION:
+
+SELECT blockcode as "Block", blockfloor as "Floor", COUNT(*) as "No.of available rooms"
+FROM room
+WHERE unavailable = "True"
+GROUP BY blockcode, blockfloor
+ORDER BY blockfloor, blockcode;
 
 
 
-
-
-
-
-
-
-Challenge 21:
+Challenge 26:
+SOLUTION:
+Challenge 27:
 
 SOLUTION:
-Challenge 21:
+Challenge 28:
 
 SOLUTION:
-Challenge 21:
+
+Challenge 29:
 
 SOLUTION:
-Challenge 21:
-SOLUTION:
-Challenge 21:
-SOLUTION:
-Challenge 21:
+
+Challenge 30:
 
 SOLUTION:
-Challenge 21:
+
+Challenge 31:
 
 SOLUTION:
+
+Challenge 32:
+
 SOLUTION:
+
+Challenge 33:
+
 SOLUTION:
+
+Challenge 34:
+
 SOLUTION:
+
+Challenge 35:
+
 SOLUTION:
+
+Challenge 36:
+
 SOLUTION:
+
+Challenge 37:
+
 SOLUTION:
+
+Challenge 38:
+
 SOLUTION:
-SOLUTION:
+
+Challenge 39:
+
 SOLUTION:
