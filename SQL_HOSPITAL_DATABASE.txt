@@ -525,20 +525,67 @@ WHERE unavailable = "True"
 GROUP BY blockcode, blockfloor
 ORDER BY blockfloor, blockcode;
 
-
-
 Challenge 26:
-SOLUTION:
-Challenge 27:
+
+From the following tables, write a SQL query to find the floor where the maximum number of rooms are available. Return floor ID as "Floor", count "Number of available rooms".
 
 SOLUTION:
+
+SELECT blockfloor as "Floor", COUNT(*) as "Number of available rooms"
+FROM room
+WHERE unavailable='false'
+GROUP BY blockfloor
+HAVING count(*) =
+  (SELECT max(zz) AS highest_total
+   FROM
+( SELECT blockfloor ,
+count(*) AS zz
+      FROM room
+      WHERE unavailable='false'
+      GROUP BY blockfloor ) AS t );
+
+
+Challenge 27:
+From the following tables, write a  SQL query to locate the floor with the minimum number of available rooms. Return floor ID as "Floor", Number of available rooms.
+
+SOLUTION:
+
+SELECT blockfloor as "Floor", COUNT(*) as "Number of available rooms"
+FROM room
+WHERE unavailable='false'
+GROUP BY blockfloor
+HAVING count(*) =
+  (SELECT min(zz) AS highest_total
+   FROM
+( SELECT blockfloor ,
+count(*) AS zz
+      FROM room
+      WHERE unavailable='false'
+      GROUP BY blockfloor ) AS t );
+
+
 Challenge 28:
 
+From the following tables, write a SQL query to find the name of the patients, their block, floor, and room number where they admitted.
+
 SOLUTION:
+
+SELECT p.name as "Patient" , r.blockcode as "Block",
+       r.blockfloor as "Floor", s.room as "Room Number"
+FROM patient as p
+JOIN stay as s
+ON s.patient = p.ssn
+JOIN room as r
+ON s.room = r.roomnumber;
 
 Challenge 29:
+From the following tables, write a SQL query to locate the nurses and the block where they are scheduled to attend the on-call patients.Return Nurse Name as "Nurse", Block code as "Block".
 
 SOLUTION:
+SELECT n.name as "Nurse" , on.blockcode as "Block",      
+FROM nurse as n
+JOIN room as on_call as on
+ON n.employeeid = on.nurse;
 
 Challenge 30:
 
