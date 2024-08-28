@@ -1,0 +1,68 @@
+Queries to detect Fraudulent Transactions:
+
+Transactions during Unusual Hours:
+
+Query: Identify transactions that occur at unusual hours, such as very late at night or early morning.
+
+
+SELECT * FROM transaction
+WHERE EXTRACT(HOUR FROM date) NOT BETWEEN 6 AND 22;
+
+
+Query: Find the top 100 highest transactions during early morning hours (7-9 AM)
+
+SELECT *
+FROM transaction
+WHERE EXTRACT(HOUR FROM date) BETWEEN 7 AND 9
+ORDER BY amount DESC
+LIMIT 100;
+
+Query: Count transactions less than $2.00 per cardholder to check for hacked cards
+
+SELECT cc.id_card_holder, COUNT(*) AS low_value_transaction_count
+FROM transaction t
+JOIN credit_card cc ON t.card = cc.card
+WHERE t.amount < 2.00
+GROUP BY cc.id_card_holder
+HAVING COUNT(*) > 0;
+
+Query: Identify the top 5 merchants prone to being hacked with small transactions
+
+SELECT m.id, m.name, COUNT(*) AS small_transaction_count
+FROM transaction t
+JOIN merchant m ON t.id_merchant = m.id
+WHERE t.amount < 2.00
+GROUP BY m.id, m.name
+ORDER BY small_transaction_count DESC
+LIMIT 5;
+
+Query: Create views for reusable queries
+
+CREATE VIEW early_morning_transactions AS
+SELECT t.id, t.date, t.amount, t.card, t.id_merchant
+FROM transaction t
+WHERE EXTRACT(HOUR FROM t.date) BETWEEN 7 AND 9;
+
+
+CREATE VIEW high_value_transactions AS
+SELECT t.id, t.date, t.amount, t.card, t.id_merchant
+FROM transaction t
+WHERE t.amount > 1000;
+
+CREATE VIEW small_amount_transactions_per_cardholder AS
+SELECT cc.id_card_holder, COUNT(*) AS low_value_transaction_count
+FROM transaction t
+JOIN credit_card cc ON t.card = cc.card
+WHERE t.amount < 2.00
+GROUP BY cc.id_card_holder;
+
+CREATE VIEW top_merchants_prone_to_hacking AS
+SELECT m.id, m.name, COUNT(*) AS small_transaction_count
+FROM transaction t
+JOIN merchant m ON t.id_merchant = m.id
+WHERE t.amount < 2.00
+GROUP BY m.id, m.name
+ORDER BY small_transaction_count DESC;
+
+
+
